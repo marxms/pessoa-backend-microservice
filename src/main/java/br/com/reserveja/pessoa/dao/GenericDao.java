@@ -53,7 +53,6 @@ public abstract class GenericDao<T, I extends Serializable> {
 	   }
 
 	   public T atualizar(@Valid T entity) {
-		   entityManager = entityManagerFactory.createEntityManager();
 	       EntityTransaction t = entityManager.getTransaction();
 	       t.begin();
 	       entityManager.merge(entity);
@@ -73,7 +72,6 @@ public abstract class GenericDao<T, I extends Serializable> {
 	   }
 
 	   public List<T> getList() {
-		   entityManager = entityManagerFactory.createEntityManager();
 		   CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 	       CriteriaQuery<T> query = builder.createQuery(persistedClass);
 	       query.from(persistedClass);
@@ -81,8 +79,8 @@ public abstract class GenericDao<T, I extends Serializable> {
 	   }
 
 	   public T encontrar(I id) {
-		   entityManager = entityManagerFactory.createEntityManager();
-	       return entityManager.find(persistedClass, id);
+	       T retorno = entityManager.find(persistedClass, id);
+		   return retorno;
 	   }
 
 	public SessionFactory getSessionFactory() {

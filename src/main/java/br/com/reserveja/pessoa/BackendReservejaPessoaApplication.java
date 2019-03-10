@@ -12,8 +12,13 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.reserveja.model.domain.endereco.Endereco;
+import br.com.reserveja.model.domain.pessoa.Pessoa;
+import br.com.reserveja.model.domain.telefone.Telefone;
+import br.com.reserveja.model.domain.user.User;
+
 @EnableAutoConfiguration
-@EntityScan(basePackages="br.com.reserveja.pessoa.model.pessoa,br.com.reserveja.pessoa.model.telefone, br.com.reserveja.pessoa.model.endereco br.com.authservice.model")
+@EntityScan(basePackageClasses= {Pessoa.class, User.class, Endereco.class, Telefone.class})
 @SpringBootApplication
 public class BackendReservejaPessoaApplication {
 

@@ -2,13 +2,18 @@ package br.com.reserveja.pessoa.dao;
 
 import java.io.Serializable;
 
+import javax.persistence.PersistenceUnit;
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import br.com.reserveja.pessoa.model.endereco.Endereco;
-import br.com.reserveja.pessoa.model.pessoa.Pessoa;
-import br.com.reserveja.pessoa.model.telefone.Telefone;
+import br.com.reserveja.model.domain.endereco.Endereco;
+import br.com.reserveja.model.domain.pessoa.Pessoa;
+import br.com.reserveja.model.domain.telefone.Telefone;
 
+@PersistenceUnit
+@Transactional
 @Repository
 public class PessoaDAOImpl extends GenericDao<Pessoa, Serializable>{
 
@@ -40,6 +45,8 @@ public class PessoaDAOImpl extends GenericDao<Pessoa, Serializable>{
 			pessoa.setEndereco(enderecoConsultado);
 			enderecoDAOImpl.salvar(pessoa.getEndereco());
 		}
+		pessoa = this.salvar(pessoa);
+		
 		for (Telefone telefone : pessoa.getTelefone()) {
 			telefone.setPessoa(pessoa);
 			telefone = telefoneDAOImpl.salvar(telefone);

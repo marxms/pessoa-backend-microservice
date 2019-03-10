@@ -20,18 +20,18 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.authservice.dto.UserDataDTO;
-import br.com.authservice.dto.UserResponseDTO;
+import br.com.reserveja.model.domain.pessoa.Pessoa;
+import br.com.reserveja.model.representation.user.UserDataDTO;
+import br.com.reserveja.model.representation.user.UserResponseDTO;
 import br.com.reserveja.pessoa.dao.GenericDao;
 import br.com.reserveja.pessoa.dao.PessoaDAOImpl;
-import br.com.reserveja.pessoa.model.pessoa.Pessoa;
 import br.com.reserveja.pessoa.service.AbstractService;
 
 @Service
 public class PessoaServiceImpl extends AbstractService<Pessoa>{
 
-	final String uri = "http://localhost:8080/users/me";
-	final String uriUpdateUser = "http://localhost:8080/updateUser";
+	final String uri = "http://localhost:8083/users/me";
+	final String uriUpdateUser = "http://localhost:8083/updateUser";
 	   	   
 	@Autowired
 	PessoaDAOImpl pessoaDAO;

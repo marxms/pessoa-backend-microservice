@@ -27,7 +27,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean getSessionFactory() {            // creating session factory
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan(new String[]{"br.com.reserveja.pessoa.model", "br.com.authservice.model"});
+        sessionFactory.setPackagesToScan(new String[]{"br.com.reserveja.model.domain"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

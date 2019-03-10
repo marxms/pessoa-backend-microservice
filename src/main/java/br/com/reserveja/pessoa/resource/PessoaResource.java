@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.authservice.dto.UserDataDTO;
-import br.com.authservice.dto.UserResponseDTO;
-import br.com.authservice.model.User;
-import br.com.reserveja.pessoa.model.pessoa.Pessoa;
-import br.com.reserveja.pessoa.representation.PessoaRepresentation;
+import br.com.reserveja.model.domain.pessoa.Pessoa;
+import br.com.reserveja.model.domain.user.User;
+import br.com.reserveja.model.representation.pessoa.PessoaRepresentation;
+import br.com.reserveja.model.representation.user.UserDataDTO;
+import br.com.reserveja.model.representation.user.UserResponseDTO;
 import br.com.reserveja.pessoa.service.pessoa.PessoaServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -49,6 +49,8 @@ public class PessoaResource {
 		/* CHAMADA AO SERVIÇO DE ATUALIZAÇÃO DE PESSOA NO AUTH SERVICE */
 		usuarioLogado = pessoaService.atualizaPessoaUser(request, token);		
 		PessoaRepresentation pesRepresentation = modelMapper.map(pessoaRetorno, PessoaRepresentation.class);
+		/*CHAMADA AO SERVIÇO PARA RETORNAR USUARIO ATRELADO */
+		pesRepresentation.setUser(usuarioLogado);
 		return pesRepresentation;
 	}
 	
