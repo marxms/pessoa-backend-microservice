@@ -102,16 +102,6 @@
 				    <excludes>
 				      <exclude>**/*.properties</exclude>
 				    </excludes>                    
-				    <archive>
-				      <manifest>
-				        <addClasspath>true</addClasspath>
-				        <classpathPrefix>lib/</classpathPrefix>
-				        <mainClass>br.com.reserveja.pessoa.BackendReservejaPessoaApplication</mainClass>
-				      </manifest>
-				      <manifestEntries>
-				        <Class-Path>conf/</Class-Path>
-				      </manifestEntries>
-				    </archive>
   				</configuration>
 			</plugin>
 	<plugin>
