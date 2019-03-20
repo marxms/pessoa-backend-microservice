@@ -120,5 +120,23 @@
 		</plugins>
 	</build>
 
+	<repositories>
+<!-- 	    <repository>
+	        <id>mvn-repo</id>
+	        <url>https://rawgit.com/marxms/reserveja-model-library/mvn-repo</url>
+	        <releases>
+	            <enabled>true</enabled>
+	        </releases>
+	        <snapshots>
+	            <enabled>true</enabled>
+	        </snapshots>
+	    </repository> -->
+	      <!--other repositories if any-->
+	    <repository>
+	        <id>project.local</id>
+	        <name>project</name>
+	        <url>file:${project.basedir}/repo</url>
+	    </repository>
+	</repositories>
 
 </project>
