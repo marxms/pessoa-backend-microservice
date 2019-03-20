@@ -104,8 +104,9 @@
 				    </excludes>                    
 				    <archive>
 				      <manifest>
-				        <addClasspath>false</addClasspath>
+				        <addClasspath>true</addClasspath>
 				        <classpathPrefix>lib/</classpathPrefix>
+				        <mainClass>br.com.reserveja.pessoa.BackendReservejaPessoaApplication</mainClass>
 				      </manifest>
 				      <manifestEntries>
 				        <Class-Path>conf/</Class-Path>
