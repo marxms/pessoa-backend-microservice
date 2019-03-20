@@ -102,6 +102,16 @@
 				    <excludes>
 				      <exclude>**/*.properties</exclude>
 				    </excludes>                    
+				    <archive>
+				      <manifest>
+				        <addClasspath>true</addClasspath>
+				        <classpathPrefix>lib/</classpathPrefix>
+				        <addExtensions>true</addExtensions>
+				      </manifest>
+				      <manifestEntries>
+				        <Class-Path>conf/</Class-Path>
+				      </manifestEntries>
+				    </archive>
   				</configuration>
 			</plugin>
 	<plugin>
