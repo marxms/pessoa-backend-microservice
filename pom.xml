@@ -90,6 +90,11 @@
 			<artifactId>reserveja-model-library</artifactId>
 		  	<version>0.0.1-SNAPSHOT</version>	
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
 			
 	</dependencies>
 
@@ -107,6 +112,7 @@
 				        <addClasspath>true</addClasspath>
 				        <classpathPrefix>lib/</classpathPrefix>
 				        <addExtensions>true</addExtensions>
+				        <mainClass>br.com.reserveja.pessoa.BackendReservejaPessoaApplication</mainClass>
 				      </manifest>
 				      <manifestEntries>
 				        <Class-Path>conf/</Class-Path>
