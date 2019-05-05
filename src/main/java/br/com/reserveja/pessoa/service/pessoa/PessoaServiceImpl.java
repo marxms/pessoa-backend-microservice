@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -25,13 +26,14 @@ import br.com.reserveja.model.representation.user.UserDataDTO;
 import br.com.reserveja.model.representation.user.UserResponseDTO;
 import br.com.reserveja.pessoa.dao.GenericDao;
 import br.com.reserveja.pessoa.dao.PessoaDAOImpl;
+import br.com.reserveja.pessoa.exception.CustomException;
 import br.com.reserveja.pessoa.service.AbstractService;
 
 @Service
 public class PessoaServiceImpl extends AbstractService<Pessoa>{
 
 	final String uri = "http://localhost:8083/users/me";
-	final String uriUpdateUser = "http://localhost:8083/updateUser";
+	final String uriUpdateUser = "http://localhost:8083/users/updateUser/"; 
 	   	   
 	@Autowired
 	PessoaDAOImpl pessoaDAO;
@@ -74,7 +76,7 @@ public class PessoaServiceImpl extends AbstractService<Pessoa>{
 		       // String roomId = getRoomID(WEBSERVICE_URL, AUTHTOKEN, roomName);
 				StringEntity entity = new StringEntity(body, ContentType.APPLICATION_JSON);
 		        CloseableHttpClient http = HttpClientBuilder.create().build();
-		        HttpPatch updateRequest = new HttpPatch("http://localhost:8080/users/updateUser/"+user.getUsername());
+		        HttpPatch updateRequest = new HttpPatch(uriUpdateUser+user.getUsername());
 		        updateRequest.setEntity(entity);
 		        updateRequest.setHeader("Authorization", token);
 		        
@@ -88,7 +90,7 @@ public class PessoaServiceImpl extends AbstractService<Pessoa>{
 		        
 		        
 		    } catch (IOException e) {
-		    	return null;
+		    	throw new CustomException("Erro ao atualizar pessoa na tb_user", HttpStatus.INTERNAL_SERVER_ERROR);
 		    }
 	}
 	

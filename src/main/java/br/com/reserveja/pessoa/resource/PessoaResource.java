@@ -1,5 +1,8 @@
 package br.com.reserveja.pessoa.resource;
 
+import javax.transaction.Transactional;
+import javax.transaction.Transactional.TxType;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,7 +33,7 @@ public class PessoaResource {
 	@Autowired
 	private PessoaServiceImpl pessoaService;
 	
-	
+	@Transactional(value=TxType.REQUIRED)
 	@PostMapping("/register")
 	@ApiOperation(value="${PessoaResource.cadastrarPessoa}")
 	public PessoaRepresentation cadastrarPessoa(
@@ -45,7 +48,6 @@ public class PessoaResource {
 		pessoaRetorno = pessoaService.insert(modelMapper.map(pessoa, Pessoa.class));
 		usuarioRetorno.setPessoa(pessoaRetorno);
 		UserDataDTO request = modelMapper.map(usuarioRetorno, UserDataDTO.class);
-		request.getPessoa().setUser(null);
 		/* CHAMADA AO SERVIÇO DE ATUALIZAÇÃO DE PESSOA NO AUTH SERVICE */
 		usuarioLogado = pessoaService.atualizaPessoaUser(request, token);		
 		PessoaRepresentation pesRepresentation = modelMapper.map(pessoaRetorno, PessoaRepresentation.class);
